@@ -1,0 +1,43 @@
+:root {
+    --bs-body-font-family: 'DM Sans', sans-serif;
+}
+
+
+/*-----------------------------------------------------------*/
+
+/* 1- Style apporté au champs de Recherche */
+.title-primary {
+    color: #D04F4F;
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: .2rem;
+}
+
+.input-group {
+    height: 3.8rem;
+}
+
+.form-control::placeholder {
+    opacity: .25;
+}
+
+.input-group>* {
+    background-color: #E7E7E7;
+}
+
+/* 2- Style apporté au boutton de trie */
+
+.filter-btn {
+    column-gap: 1.5rem;
+}
+
+.filter-appareils>* {
+    background-color: #68D9A4;
+    ;
+}
+
+.filter-ustensiles>* {
+    background-color: #ED6454;
+    ;
+    ;
+}
