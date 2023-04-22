@@ -28,19 +28,36 @@ class Recipes {
         this.ustensils = ustensils;
     }
     createRecipe() {
-        const article = document.createElement('article')
+        console.log(this.ingredients);
+        const article = document.createElement('div')
+        article.classList.add("col-xl-4", "card", "mb-5", "border-0", "p-0")
         article.insertAdjacentHTML(
             "beforeend",
             `
-            <div class="card col-3">
-            <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${this.name}</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            `
+                    <img class="card-img-top rounded-top-3" src="https://placehold.co/380x178" alt="Card image cap">
+                    <div class="card-body bg-light rounded-bottom-3">
+                        <div class="d-flex flex-row justify-content-between">
+                            <h4 class="card-title">${this.name}</h4>
+                            <div class="d-flex flex-row">
+                                <i class="far fa-clock pe-3"></i>${this.time}<p>min</p>
+                            </div>
+                        </div>
+                        <div class="recipe">
+                            <div class="ingredientsList">
+                                <ul>
+                                    <li>Lait de coco</li>
+                                    <li>Lait de coco</li>
+                                    <li>Lait de coco</li>
+                                    <li>Lait de coco</li>
+                                    <li>Lait de coco</li>
+                                </ul>
+                            </div>
+                            <div class="recipeDes">
+                                <p >${this.description}</p>
+                            </div>
+                        </div>
+                        </div>
+                        `
         )
         return (article)
     }

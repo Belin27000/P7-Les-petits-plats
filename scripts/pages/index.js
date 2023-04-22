@@ -8,18 +8,28 @@ async function init() {
 
 //Fonction pour organiser
 function displayRecipes() {
-    console.log('Je suis passé par là');
-    console.log(recipes);
-    const recipesSection = document.querySelector("body");
+    // console.log('Je suis passé par là');
+    // console.log(recipes);
+    const recipesSection = document.querySelector(".allRecipes");
 
-    const allRecipes = document.createElement("div")
-    allRecipes.classList.add("container");
-    recipesSection.appendChild(allRecipes)
+    recipesSection.classList.add("container",);
 
-    let newRecipe = new Recipes(recipes[1])
-    let article = newRecipe.createRecipe()
-    console.log(article);
-    allRecipes.appendChild(article);
+
+    const recipeCont = document.querySelector(".allRecipes")
+    const recipeRow = document.createElement("div")
+    recipeRow.classList.add("row")
+    recipeCont.appendChild(recipeRow)
+
+
+
+    for (let i = 0; i < recipes.length; i++) {
+        let newRecipe = new Recipes(recipes[i])
+        let article = newRecipe.createRecipe()
+        recipeRow.appendChild(article);
+        console.log(recipes.length);
+
+    }
+    // console.log(article);
 
     // allRecipes.insertAdjacentHTML(
 

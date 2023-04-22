@@ -28,16 +28,58 @@
 /* 2- Style apporté au boutton de trie */
 
 .filter-btn {
-    column-gap: 1.5rem;
+    gap: 1.5rem;
 }
 
 .filter-appareils>* {
     background-color: #68D9A4;
-    ;
 }
 
 .filter-ustensiles>* {
     background-color: #ED6454;
-    ;
-    ;
+}
+
+
+/* 3- Style apporté aux cartes recettes */
+
+.card {
+    flex: 1 1 21rem;
+    margin: 20px 20px;
+    align-self: normal;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.card-body {
+    height: 100%;
+
+}
+
+.card h4 {
+    font-size: 1.1rem;
+
+}
+
+.recipe {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.ingredientsList {
+    width: 50%;
+}
+
+.recipeDes {
+    width: 50%;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
