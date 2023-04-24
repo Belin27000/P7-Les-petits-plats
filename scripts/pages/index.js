@@ -12,7 +12,7 @@ function displayRecipes() {
     // console.log(recipes);
     const recipesSection = document.querySelector(".allRecipes");
 
-    recipesSection.classList.add("container",);
+    recipesSection.classList.add("container");
 
 
     const recipeCont = document.querySelector(".allRecipes")
@@ -20,32 +20,68 @@ function displayRecipes() {
     recipeRow.classList.add("row")
     recipeCont.appendChild(recipeRow)
 
-
-
-    for (let i = 0; i < recipes.length; i++) {
-        let newRecipe = new Recipes(recipes[i])
+    recipes.forEach(item => {
+        // console.log(item);
+        let newRecipe = new Recipes(item)
         let article = newRecipe.createRecipe()
         recipeRow.appendChild(article);
-        console.log(recipes.length);
+        article.setAttribute("tabindex", "0")
+        console.log(item.id);
+        // console.log(article.childNodes);
 
-    }
-    // console.log(article);
+        const addIngredient = document.querySelector(".ingredientsList_" + item.id)
 
-    // allRecipes.insertAdjacentHTML(
+        item.ingredients.forEach(products => {
+            let product = products.ingredient
+            let quantité = products.quantity
+            let unite = products.unit
 
-    //     "beforeend",
-    //     `
-    //     <div class="row text-center flex-wrap mt-5">
-    //     <p class="col bg-primary text-light">Maxime</p>
-    //     <p class="col bg-success text-light">est le meilleur</p>
-    //     <p class="col bg-secondary text-light">carreleur</p>
-    //     <p class="col bg-warning text-secondary">du monde</p>
-    //     </div>
-    // `
-    // )
+            if (unite !== undefined) {
+                const produit = document.createElement("li")
+                produit.classList.add("ingreList")
+                produit.insertAdjacentHTML(
+                    "beforeend",
+                    `
+                    <p class="product">${product}</p><p>${`: `} ${quantité} ${unite}</p>
+            `
+                )
+                addIngredient.appendChild(produit)
 
-}
+            } else if (quantité !== undefined) {
 
+                const produit = document.createElement("li")
+                produit.classList.add("ingreList")
+                produit.insertAdjacentHTML(
+                    "beforeend",
+                    `
+                <p class="product">${product}</p> <p>${`: `} ${quantité}</p>
+            `
+                )
+                addIngredient.appendChild(produit)
+
+            } else {
+                const produit = document.createElement("li")
+                produit.classList.add("ingreList")
+                produit.insertAdjacentHTML(
+                    "beforeend",
+                    `
+                <p class="product"> ${product}</p >
+                    `
+                )
+                addIngredient.appendChild(produit)
+
+            }
+            // console.log(product);
+            // console.log(quantité);
+            // console.log(unite);
+
+
+        });
+
+
+    });
+
+};
 
 
 init();

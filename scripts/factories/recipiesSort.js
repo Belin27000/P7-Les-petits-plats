@@ -18,7 +18,6 @@ class Recipes {
 
     constructor(recipe) {
         const { id, name, ingredients, time, description, appliance, ustensils } = recipe;
-
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
@@ -27,8 +26,11 @@ class Recipes {
         this.appliance = appliance;
         this.ustensils = ustensils;
     }
+
     createRecipe() {
-        console.log(this.ingredients);
+        // console.log(this.ingredients);
+        let nbIngredients = this.ingredients
+
         const article = document.createElement('div')
         article.classList.add("col-xl-4", "card", "mb-5", "border-0", "p-0")
         article.insertAdjacentHTML(
@@ -38,20 +40,12 @@ class Recipes {
                     <div class="card-body bg-light rounded-bottom-3">
                         <div class="d-flex flex-row justify-content-between">
                             <h4 class="card-title">${this.name}</h4>
-                            <div class="d-flex flex-row">
-                                <i class="far fa-clock pe-3"></i>${this.time}<p>min</p>
+                            <div class="d-flex flex-row recipeTime">
+                                <i class="far fa-clock pe-3"></i>${this.time}<p class="ms-1">min</p>
                             </div>
                         </div>
                         <div class="recipe">
-                            <div class="ingredientsList">
-                                <ul>
-                                    <li>Lait de coco</li>
-                                    <li>Lait de coco</li>
-                                    <li>Lait de coco</li>
-                                    <li>Lait de coco</li>
-                                    <li>Lait de coco</li>
-                                </ul>
-                            </div>
+                            <ul class="ingredientsList_${this.id} ingredientList"></ul>
                             <div class="recipeDes">
                                 <p >${this.description}</p>
                             </div>
@@ -59,8 +53,10 @@ class Recipes {
                         </div>
                         `
         )
+
         return (article)
     }
 
 
 }
+

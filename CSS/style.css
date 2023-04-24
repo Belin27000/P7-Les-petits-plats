@@ -59,6 +59,11 @@
 
 }
 
+.recipeTime {
+    align-items: baseline;
+}
+
+
 .recipe {
     display: flex;
     flex-direction: row;
@@ -66,16 +71,35 @@
     width: 100%;
 }
 
-.ingredientsList {
-    width: 50%;
+.ingredientList {
+    width: 70%;
+    padding-left: 0;
+    margin: 0;
+    font-size: .65rem;
+    line-height: .5rem;
+}
+
+.ingreList {
+    display: flex;
+    flex-direction: row;
+}
+
+.product {
+    font-weight: bold;
+    margin-bottom: .5rem;
 }
 
 .recipeDes {
-    width: 50%;
+    width: 70%;
+}
+
+.recipeDes p {
     display: -webkit-box;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    font-size: .65rem;
+
 }
 
 .row {
