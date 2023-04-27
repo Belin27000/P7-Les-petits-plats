@@ -1,32 +1,30 @@
+const searchInput = document.querySelector(".form-control")
+let recipesArray;
 //J'initialise mon marionetiste
 async function init() {
-    // console.log(recipes[1]);
-    const { ingredients, equipment, tools, recette } = recipes
-    const ingredient = recipes
-    displayRecipes()
+    let recipesArray = Array.from(recipes)
+    // console.log(recipes);
+    // const { ingredients, equipment, tools, recette } = recipes
+    // const ingredient = recipes
+    displayRecipes(recipesArray)
 }
 
-//Fonction pour organiser
-function displayRecipes() {
-    // console.log('Je suis passé par là');
-    // console.log(recipes);
-    const recipesSection = document.querySelector(".allRecipes");
-
-    recipesSection.classList.add("container");
+//Fonction d'affichage de toutes les recettes
+function displayRecipes(recipesArray) {
 
 
     const recipeCont = document.querySelector(".allRecipes")
+    recipeCont.classList.add("container");
     const recipeRow = document.createElement("div")
     recipeRow.classList.add("row")
     recipeCont.appendChild(recipeRow)
 
-    recipes.forEach(item => {
+    recipesArray.forEach(item => {
         // console.log(item);
         let newRecipe = new Recipes(item)
         let article = newRecipe.createRecipe()
         recipeRow.appendChild(article);
         article.setAttribute("tabindex", "0")
-        console.log(item.id);
         // console.log(article.childNodes);
 
         const addIngredient = document.querySelector(".ingredientsList_" + item.id)
@@ -71,17 +69,54 @@ function displayRecipes() {
                 addIngredient.appendChild(produit)
 
             }
-            // console.log(product);
-            // console.log(quantité);
-            // console.log(unite);
-
-
         });
-
 
     });
 
 };
+
+searchInput.addEventListener("input", filterData)
+
+// //Fonction de recherche de recette
+function filterData(e) {
+
+    const recipeRow = document.querySelector(".allRecipes")
+    const searchString = e.target.value.toLowerCase();
+    let recipesArray = Array.from(recipes)
+    console.log(recipesArray);
+
+    let i = 0
+    if (searchString.length >= 3) {
+        recipeRow.innerHTML = ""
+
+        const productArray = []
+        recipesArray.forEach(item => {
+            item.ingredients.forEach(products => {
+                let product = products.ingredient
+                if (product.toLowerCase().includes(searchString)) {
+                    productArray.push(item)
+                    // console.log(productArray);
+                }
+            })
+
+
+
+        })
+        const filteredArr = recipesArray.filter(el => el.name.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString))
+        const mergeRecipe = [].concat(productArray, filteredArr);
+        const cleanMergeRecipe = [...new Set(mergeRecipe)]
+        console.log(cleanMergeRecipe);
+        displayRecipes(cleanMergeRecipe)
+        // console.log(filteredArr);
+    } else if (i === 0) {
+        recipeRow.innerHTML = ""
+        displayRecipes(recipesArray)
+
+        i = 1
+        console.log(i);
+    }
+
+}
 
 
 init();

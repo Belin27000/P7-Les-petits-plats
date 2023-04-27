@@ -15,6 +15,7 @@
     <script src="https://kit.fontawesome.com/9e81b3a6a5.js" crossorigin="anonymous"></script>
     <script defer src="./data/recipes.js"></script>
     <script defer src="./scripts/factories/recipiesSort.js"></script>
+    <script defer src="./scripts/utils/searchRecipe.js"></script>
     <script defer src="./scripts/pages/index.js"></script>
     <title>Les petits plats</title>
 </head>
@@ -25,14 +26,15 @@
         <h1 class="title-primary text-center">Les petits plats</h1>
     </header>
     <div class="input-group flex-nowrap container">
-        <input type="text" class="form-control border-0 " placeholder="Rechercher une recette" aria-label="Username"
+        <input type="search" class="form-control border-0 " placeholder="Rechercher une recette" aria-label="SearchBar"
             aria-describedby="addon-wrapping">
         <button class="input-group-text border-0" id="addon-wrapping"><i class="fas fa-search fa-lg"></i></button>
     </div>
     <div class="filter-btn container d-flex mt-5 mb-5 flex-wrap ">
         <div class="filter-ingredients">
             <button class="bg-primary text-light rounded border-0 p-3">Ingredients<i
-                    class="fas fa-chevron-down ps-3"></i></button>
+                    class="fas fa-chevron-down ps-3"></i>
+            </button>
         </div>
         <div class="filter-appareils">
             <button class=" text-light rounded border-0 p-3">Appareils<i class="fas fa-chevron-down ps-3"></i></button>

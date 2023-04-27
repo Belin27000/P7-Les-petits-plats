@@ -36,7 +36,7 @@ class Recipes {
         article.insertAdjacentHTML(
             "beforeend",
             `
-                    <img class="card-img-top rounded-top-3" src="https://placehold.co/380x178" alt="Card image cap">
+                    <img class="card-img-top" src="https://placehold.co/380x178" alt="Card image cap">
                     <div class="card-body bg-light rounded-bottom-3">
                         <div class="d-flex flex-row justify-content-between">
                             <h4 class="card-title">${this.name}</h4>
