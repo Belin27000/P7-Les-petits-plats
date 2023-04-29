@@ -7,6 +7,8 @@ async function init() {
     // const { ingredients, equipment, tools, recette } = recipes
     // const ingredient = recipes
     displayRecipes(recipesArray)
+    searchInput.addEventListener("input", filterData) //Recherche les recettes du champs recherche dans searchRecipe.js
+
 }
 
 //Fonction d'affichage de toutes les recettes
@@ -75,48 +77,9 @@ function displayRecipes(recipesArray) {
 
 };
 
-searchInput.addEventListener("input", filterData)
 
 // //Fonction de recherche de recette
-function filterData(e) {
 
-    const recipeRow = document.querySelector(".allRecipes")
-    const searchString = e.target.value.toLowerCase();
-    let recipesArray = Array.from(recipes)
-    console.log(recipesArray);
-
-    let i = 0
-    if (searchString.length >= 3) {
-        recipeRow.innerHTML = ""
-
-        const productArray = []
-        recipesArray.forEach(item => {
-            item.ingredients.forEach(products => {
-                let product = products.ingredient
-                if (product.toLowerCase().includes(searchString)) {
-                    productArray.push(item)
-                    // console.log(productArray);
-                }
-            })
-
-
-
-        })
-        const filteredArr = recipesArray.filter(el => el.name.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString))
-        const mergeRecipe = [].concat(productArray, filteredArr);
-        const cleanMergeRecipe = [...new Set(mergeRecipe)]
-        console.log(cleanMergeRecipe);
-        displayRecipes(cleanMergeRecipe)
-        // console.log(filteredArr);
-    } else if (i === 0) {
-        recipeRow.innerHTML = ""
-        displayRecipes(recipesArray)
-
-        i = 1
-        console.log(i);
-    }
-
-}
 
 
 init();

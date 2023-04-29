@@ -29,7 +29,6 @@ class Recipes {
 
     createRecipe() {
         // console.log(this.ingredients);
-        let nbIngredients = this.ingredients
 
         const article = document.createElement('div')
         article.classList.add("col-xl-4", "card", "mb-5", "border-0", "p-0")
@@ -56,7 +55,6 @@ class Recipes {
 
         return (article)
     }
-
 
 }
 

@@ -28,7 +28,44 @@
 /* 2- Style apporté au boutton de trie */
 
 .filter-btn {
+    /* gap: 1.5rem; */
     gap: 1.5rem;
+    position: relative;
+}
+
+.filter-btn div {
+    position: relative;
+}
+
+.filter-btn input {
+    width: 150px;
+    /* margin-right: 1rem;
+    padding-right: 1rem; */
+}
+
+.filter-btn input::placeholder {
+    color: white;
+}
+
+/* .filter-ingredients {
+    margin-right: 1rem;
+    padding-right: 1rem;
+    position: relative;
+} */
+
+
+.filter-btn button {
+    display: flex;
+    position: absolute;
+    right: 0;
+    /* padding: 0 5rem 0 0; */
+    align-self: center;
+}
+
+.filter-btn i {
+    width: .1rem;
+    margin-right: 1rem;
+    /* padding: 0 1rem; */
 }
 
 .filter-appareils>* {
