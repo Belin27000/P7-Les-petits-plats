@@ -6,44 +6,37 @@
 const allProductList = []
 const allAppareils = []
 const allUstensiles = []
+
 function filterSort(recipeList) {
-    // console.log(recipeList);
-    // const test = recipeList[0].description
-    // console.log(test);
 
+    cleanProductList(recipeList)
+}
 
+//foncion de filtre des ingrédients
+function cleanProductList(recipeList) {
 
-    const ingredientFilter = document.querySelector(".filter-ingredients")
-    const ingredientFilterList = document.createElement("div")
-    ingredientFilterList.classList.add("test")
-    ingredientFilter.appendChild(ingredientFilterList)
-
-    //Ajoute tous les ingrédients dans un tableau
+    const allProductList = []
     recipeList.forEach(item => {
-        //recupère tous les ingrédients des recettes
         item.ingredients.forEach(products => {
-            let product = products.ingredient
-            allProductList.push(product)
+            allProductList.push(products.ingredient)
         })
-
-        //recupère tous les ustensiles des recettes
-        item.ustensils.forEach(ustensiles => {
-
-            allUstensiles.push(ustensiles)
-            // console.log(allUstensiles);
-        })
-
-        //recupère tous les appareils des recettes
-        let appareil = item.appliance
-        allAppareils.push(appareil)
-
     })
-    const cleanAllProductList = [...new Set(allProductList)]//suppression des doublons liste ingrédient
-    const cleanAllAppareils = [...new Set(allAppareils)]//suppression des doublons appareils
-    const cleanAllUstensiles = [...new Set(allUstensiles)]//suppression des doublons ustensiles
+    console.log(allProductList);
+    const cleanAllProductList = [...new Set(allProductList)]
+    console.log(cleanAllProductList.length);
 
-    console.log(cleanAllProductList);
-    console.log(cleanAllAppareils);
-    console.log(cleanAllUstensiles);
-    // console.log(cleanAllProductList);
+    const IngredientListe = document.querySelector(".ingredientList")
+    // IngredientListe.innerHTML = " ";
+
+    cleanAllProductList.forEach(element => {
+        IngredientListe.insertAdjacentHTML(
+            "beforeend",
+            `
+            <li class="bg-primary rounded border-0 p-3 productItem">${element}</li>
+            `
+        )
+    })
+    console.log(cleanAllProductList.length);
+    // console.log(IngredientListe)
+
 }

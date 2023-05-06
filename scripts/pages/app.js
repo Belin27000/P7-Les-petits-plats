@@ -7,13 +7,13 @@ async function init() {
     // const { ingredients, equipment, tools, recette } = recipes
     // const ingredient = recipes
     displayRecipes(recipesArray)
+
     searchInput.addEventListener("input", filterData) //Recherche les recettes du champs recherche dans searchRecipe.js
 
 }
 
 //Fonction d'affichage de toutes les recettes
-function displayRecipes(recipesArray) {
-
+function displayRecipes(recipesArray, noRecipe) {
 
     const recipeCont = document.querySelector(".allRecipes")
     recipeCont.classList.add("container");
@@ -21,59 +21,69 @@ function displayRecipes(recipesArray) {
     recipeRow.classList.add("row")
     recipeCont.appendChild(recipeRow)
 
-    recipesArray.forEach(item => {
-        // console.log(item);
-        let newRecipe = new Recipes(item)
-        let article = newRecipe.createRecipe()
-        recipeRow.appendChild(article);
-        article.setAttribute("tabindex", "0")
-        // console.log(article.childNodes);
 
-        const addIngredient = document.querySelector(".ingredientsList_" + item.id)
+    if (recipesArray.length === 0) {
+        console.log(noRecipe);
 
-        item.ingredients.forEach(products => {
-            let product = products.ingredient
-            let quantité = products.quantity
-            let unite = products.unit
+        recipeRow.appendChild(noRecipe)
 
-            if (unite !== undefined) {
-                const produit = document.createElement("li")
-                produit.classList.add("ingreList")
-                produit.insertAdjacentHTML(
-                    "beforeend",
-                    `
+    } else {
+
+
+        recipesArray.forEach(item => {
+            // console.log(item);
+            let newRecipe = new Recipes(item)
+            let article = newRecipe.createRecipe()
+            recipeRow.appendChild(article);
+            article.setAttribute("tabindex", "0")
+            // console.log(article.childNodes);
+
+            const addIngredient = document.querySelector(".ingredientsList_" + item.id)
+
+            item.ingredients.forEach(products => {
+                let product = products.ingredient
+                let quantité = products.quantity
+                let unite = products.unit
+
+                if (unite !== undefined) {
+                    const produit = document.createElement("li")
+                    produit.classList.add("ingreList")
+                    produit.insertAdjacentHTML(
+                        "beforeend",
+                        `
                     <p class="product">${product}</p><p>${`: `} ${quantité} ${unite}</p>
             `
-                )
-                addIngredient.appendChild(produit)
+                    )
+                    addIngredient.appendChild(produit)
 
-            } else if (quantité !== undefined) {
+                } else if (quantité !== undefined) {
 
-                const produit = document.createElement("li")
-                produit.classList.add("ingreList")
-                produit.insertAdjacentHTML(
-                    "beforeend",
-                    `
+                    const produit = document.createElement("li")
+                    produit.classList.add("ingreList")
+                    produit.insertAdjacentHTML(
+                        "beforeend",
+                        `
                 <p class="product">${product}</p> <p>${`: `} ${quantité}</p>
             `
-                )
-                addIngredient.appendChild(produit)
+                    )
+                    addIngredient.appendChild(produit)
 
-            } else {
-                const produit = document.createElement("li")
-                produit.classList.add("ingreList")
-                produit.insertAdjacentHTML(
-                    "beforeend",
-                    `
+                } else {
+                    const produit = document.createElement("li")
+                    produit.classList.add("ingreList")
+                    produit.insertAdjacentHTML(
+                        "beforeend",
+                        `
                 <p class="product"> ${product}</p >
                     `
-                )
-                addIngredient.appendChild(produit)
+                    )
+                    addIngredient.appendChild(produit)
 
-            }
+                }
+            });
+
         });
-
-    });
+    }
 
 };
 
