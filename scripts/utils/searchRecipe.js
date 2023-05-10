@@ -5,7 +5,6 @@ let cleanMergeRecipe = []
 function filterData(e) {
     const recipeRow = document.querySelector(".allRecipes")
     const searchString = e.target.value.toLowerCase();//stockage du texte entré dans la searchBar
-    console.log(searchString);
     const recipesArray = Array.from(recipes) //copie de la liste des recettes
     let searchbar = document.querySelector(".searchbar");
     let i = 0
@@ -40,11 +39,7 @@ function filterData(e) {
         i = 1
     }
 
-    function initFilter() {
-        const IngredientListe = document.querySelector(".ingredientList")
-        IngredientListe.innerHTML = "";
 
-    }
 
     // fonction qui fait la rechercher (algo)
 

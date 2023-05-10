@@ -26,6 +26,9 @@
 }
 
 /* 2- Style apporté au boutton de trie */
+.allFilter {
+    height: 100%;
+}
 
 .filter-btn {
     /* gap: 1.5rem; */
@@ -38,7 +41,7 @@
 }
 
 .filter-btn input {
-    width: 150px;
+    width: 100%;
     /* margin-right: 1rem;
     padding-right: 1rem; */
 }
@@ -57,7 +60,7 @@
 .filter-btn button {
     display: flex;
     position: absolute;
-    right: 0;
+    right: 1rem;
     /* padding: 0 5rem 0 0; */
     align-self: center;
 }
@@ -68,12 +71,32 @@
     /* padding: 0 1rem; */
 }
 
-.filter-appareils>* {
+.filter-btn .list {
+    margin: 0;
+    padding: 0;
+
+}
+
+.filter-appareils,
+.inputAppareils,
+.btnAppareils {
     background-color: #68D9A4;
 }
 
-.filter-ustensiles>* {
+.filter-ustensiles,
+.inputUstensiles,
+.btnUstensiles {
     background-color: #ED6454;
+}
+
+
+
+/* .filter-ustensiles>* {
+    background-color: #ED6454;
+} */
+
+.productItem {
+    list-style-type: none;
 }
 
 
@@ -108,13 +131,6 @@
     width: 100%;
 }
 
-.ingredientList {
-    width: 70%;
-    padding-left: 0;
-    margin: 0;
-    font-size: .65rem;
-    line-height: .5rem;
-}
 
 .ingreList {
     display: flex;

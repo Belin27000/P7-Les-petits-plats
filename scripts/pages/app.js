@@ -1,14 +1,17 @@
 const searchInput = document.querySelector(".form-control")
+const filterArrow = document.querySelectorAll(".filterArrow button")
+const filterCont = document.querySelectorAll(".filterArrow")
 let recipesArray;
 //J'initialise mon marionetiste
 async function init() {
     let recipesArray = Array.from(recipes)
-    // console.log(recipes);
-    // const { ingredients, equipment, tools, recette } = recipes
-    // const ingredient = recipes
-    displayRecipes(recipesArray)
+
+
+    displayRecipes(recipesArray);
 
     searchInput.addEventListener("input", filterData) //Recherche les recettes du champs recherche dans searchRecipe.js
+    // filterArrow.addEventListener("click", displayFilter)
+    displayFilter();
 
 }
 
@@ -87,8 +90,25 @@ function displayRecipes(recipesArray, noRecipe) {
 
 };
 
+function displayFilter() {
 
-// //Fonction de recherche de recette
+
+    for (let i = 0; i < filterArrow.length; i++) {
+
+        const selectedFilter = filterCont[i].querySelector("ul")
+
+        if (!selectedFilter.classList.contains("d-none")) {
+            selectedFilter.classList.remove("d-none")
+        }
+        filterArrow[i].addEventListener("click", () => {
+            selectedFilter.classList.toggle("d-none")
+            console.log(selectedFilter)
+
+        })
+
+    }
+}
+
 
 
 
