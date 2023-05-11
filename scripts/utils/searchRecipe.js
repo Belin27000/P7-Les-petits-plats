@@ -42,7 +42,8 @@ function filterData(e) {
 
 
     // fonction qui fait la rechercher (algo)
-
+    //C'est ici que je dois faire le deuxieme algo
+    //change foreach et filter en for
     function filterRecipe() {
 
         //vérifie si le texte recherché est dans la liste de produuit des recettes

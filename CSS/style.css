@@ -13,6 +13,23 @@
     letter-spacing: .2rem;
 }
 
+.list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+/* .active {
+    display: grid;
+    grid-template-columns: 400px 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+}
+
+.disable {
+    display: grid;
+    grid-template-columns: 400px 1fr 1fr 1fr;
+} */
+
 .input-group {
     height: 3.8rem;
 }
@@ -31,13 +48,15 @@
 }
 
 .filter-btn {
-    /* gap: 1.5rem; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     position: relative;
 }
 
 .filter-btn div {
     position: relative;
+    height: fit-content;
 }
 
 .filter-btn input {
@@ -51,9 +70,8 @@
 }
 
 /* .filter-ingredients {
-    margin-right: 1rem;
-    padding-right: 1rem;
-    position: relative;
+    display: grid;
+    grid-template-columns:;
 } */
 
 
@@ -95,7 +113,9 @@
     background-color: #ED6454;
 } */
 
-.productItem {
+.productItem,
+.ustensileItem,
+.applianceItem {
     list-style-type: none;
 }
 

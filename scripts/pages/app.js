@@ -102,7 +102,12 @@ function displayFilter() {
         }
         filterArrow[i].addEventListener("click", () => {
             selectedFilter.classList.toggle("d-none")
+            selectedFilter.classList.toggle("list")
+
+            // selectedFilter.classList.toggle("active")
+
             console.log(selectedFilter)
+
 
         })
 

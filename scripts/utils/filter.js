@@ -50,7 +50,7 @@ function cleanProductList(recipeList) {
     })
 }
 
-//foncion de filtre des appareils
+//fonction de filtre des appareils
 function cleanApplianceList(recipeList) {
 
     const allApplianceList = []
@@ -66,7 +66,7 @@ function cleanApplianceList(recipeList) {
         applianceListe.insertAdjacentHTML(
             "beforeend",
             `
-            <li class="rounded border-0 p-3 productItem">${element}</li>
+            <li class="rounded border-0 p-3 applianceItem">${element}</li>
             `
         )
     })
@@ -93,7 +93,7 @@ function cleanUstensilsList(recipeList) {
         ustensilesListe.insertAdjacentHTML(
             "beforeend",
             `
-            <li class="rounded border-0 p-3 productItem">${element}</li>
+            <li class="rounded border-0 p-3 ustensileItem">${element}</li>
             `
         )
     })
