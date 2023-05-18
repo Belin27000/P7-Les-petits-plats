@@ -1,13 +1,11 @@
 const productArray = [] //initialisation du tableau de filtre
 let cleanMergeRecipe = []
 
-
 function filterData(e) {
     const recipeRow = document.querySelector(".allRecipes")
     const searchString = e.target.value.toLowerCase();//stockage du texte entré dans la searchBar
     const recipesArray = Array.from(recipes) //copie de la liste des recettes
     let searchbar = document.querySelector(".searchbar");
-    let i = 0
 
 
 
@@ -36,7 +34,6 @@ function filterData(e) {
         recipeRow.innerHTML = ""
         displayRecipes(recipesArray)
 
-        i = 1
     }
 
 
@@ -44,29 +41,7 @@ function filterData(e) {
     // fonction qui fait la rechercher (algo)
     //C'est ici que je dois faire le deuxieme algo
     //change foreach et filter en for
-    function filterRecipe() {
 
-        //vérifie si le texte recherché est dans la liste de produuit des recettes
-        recipesArray.forEach(item => {
-            item.ingredients.forEach(products => {
-
-                let product = products.ingredient
-                if (product.toLowerCase().includes(searchString)) {
-                    productArray.push(item)
-                }
-            })
-        })
-
-        //vérifie si le texte recherché est dans le nom ou la description des recettes
-        const filteredArr = recipesArray.filter(el => el.name.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString))
-        const mergeRecipe = [].concat(productArray, filteredArr);
-        let cleanMergeRecipe = [...new Set(mergeRecipe)] //suppression des doublons
-
-        //On filtre la liste sans doublons
-        const filteredCleanMergeRecipe = cleanMergeRecipe.filter(el => el.name.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString))
-
-        return (filteredCleanMergeRecipe)
-    }
 
     //message lorsque la recherche ne trouve pas de recette, ingrédients ou ustensile conrrespondant.
     function noRecipe() {
@@ -88,4 +63,28 @@ function filterData(e) {
         )
         return (article)
     }
+
+}
+function filterRecipe(recipesArray, searchString) {
+
+    //vérifie si le texte recherché est dans la liste de produuit des recettes
+    recipesArray.forEach(item => {
+        item.ingredients.forEach(products => {
+
+            let product = products.ingredient
+            if (product.toLowerCase().includes(searchString)) {
+                productArray.push(item)
+            }
+        })
+    })
+
+    //vérifie si le texte recherché est dans le nom ou la description des recettes
+    const filteredArr = recipesArray.filter(el => el.name.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString))
+    const mergeRecipe = [].concat(productArray, filteredArr);
+    let cleanMergeRecipe = [...new Set(mergeRecipe)] //suppression des doublons
+
+    //On filtre la liste sans doublons
+    const filteredCleanMergeRecipe = cleanMergeRecipe.filter(el => el.name.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString))
+
+    return (filteredCleanMergeRecipe)
 }

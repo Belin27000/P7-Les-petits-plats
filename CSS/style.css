@@ -1,34 +1,20 @@
 :root {
     --bs-body-font-family: 'DM Sans', sans-serif;
+    --AppareilsColor: #68D9A4;
+    --ustensilesColor: #ED6454;
 }
 
 
 /*-----------------------------------------------------------*/
 
-/* 1- Style apporté au champs de Recherche */
+/**** 1- Style apporté au champs de Recherche ****/
+
 .title-primary {
-    color: #D04F4F;
+    color: ustensilesColor;
     font-weight: 700;
     font-size: 36px;
     letter-spacing: .2rem;
 }
-
-.list {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-}
-
-/* .active {
-    display: grid;
-    grid-template-columns: 400px 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-
-}
-
-.disable {
-    display: grid;
-    grid-template-columns: 400px 1fr 1fr 1fr;
-} */
 
 .input-group {
     height: 3.8rem;
@@ -42,14 +28,21 @@
     background-color: #E7E7E7;
 }
 
-/* 2- Style apporté au boutton de trie */
+/**** 2- Style apporté au boutton de trie ****/
+
 .allFilter {
     height: 100%;
 }
 
-.filter-btn {
+/* .allList {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+} */
+
+.filter-btn {
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(4, 1fr); */
     gap: 1.5rem;
     position: relative;
 }
@@ -69,18 +62,13 @@
     color: white;
 }
 
-/* .filter-ingredients {
-    display: grid;
-    grid-template-columns:;
-} */
-
-
 .filter-btn button {
     display: flex;
     position: absolute;
     right: 1rem;
     /* padding: 0 5rem 0 0; */
     align-self: center;
+    transition: rotate .3s
 }
 
 .filter-btn i {
@@ -89,29 +77,52 @@
     /* padding: 0 1rem; */
 }
 
+.select {
+    rotate: -180deg;
+}
+
+
+/* .list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+} */
+
+.filterArrow ul {
+    opacity: 0;
+    transition: width 5s;
+
+}
+
+.list li:hover {
+    box-shadow: 0px 1px 5px black;
+    /* border: 10px solid black; */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
 .filter-btn .list {
     margin: 0;
     padding: 0;
-
+    height: fit-content;
+    opacity: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
+
 
 .filter-appareils,
 .inputAppareils,
 .btnAppareils {
-    background-color: #68D9A4;
+    background-color: var(--AppareilsColor);
 }
 
 .filter-ustensiles,
 .inputUstensiles,
 .btnUstensiles {
-    background-color: #ED6454;
+    background-color: var(--ustensilesColor);
 }
 
-
-
-/* .filter-ustensiles>* {
-    background-color: #ED6454;
-} */
 
 .productItem,
 .ustensileItem,
@@ -120,7 +131,7 @@
 }
 
 
-/* 3- Style apporté aux cartes recettes */
+/**** 3- Style apporté aux cartes recettes ****/
 
 .card {
     flex: 1 1 21rem;

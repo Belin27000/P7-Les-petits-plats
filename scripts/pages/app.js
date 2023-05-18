@@ -2,6 +2,9 @@ const searchInput = document.querySelector(".form-control")
 const filterArrow = document.querySelectorAll(".filterArrow button")
 const filterCont = document.querySelectorAll(".filterArrow")
 let recipesArray;
+const ingredientInput = document.querySelector(".inputingredient")
+const applianceInput = document.querySelector(".inputAppareils")
+const ustensilInput = document.querySelector(".inputUstensiles")
 //J'initialise mon marionetiste
 async function init() {
     let recipesArray = Array.from(recipes)
@@ -10,7 +13,10 @@ async function init() {
     displayRecipes(recipesArray);
 
     searchInput.addEventListener("input", filterData) //Recherche les recettes du champs recherche dans searchRecipe.js
-    // filterArrow.addEventListener("click", displayFilter)
+    ingredientInput.addEventListener("input", ingredientFilter) //Filtre les ingrédients du champs recherche dans filterInput.js
+    applianceInput.addEventListener("input", appareilFilter) //Filtre les appareils du champs recherche dans filterInput.js
+    ustensilInput.addEventListener("input", ustensilFilter) //Filtre les appareils du champs recherche dans filterInput.js
+
     displayFilter();
 
 }
@@ -31,15 +37,13 @@ function displayRecipes(recipesArray, noRecipe) {
         recipeRow.appendChild(noRecipe)
 
     } else {
-
-
+        //creation de la recette avec la factory
         recipesArray.forEach(item => {
             // console.log(item);
             let newRecipe = new Recipes(item)
             let article = newRecipe.createRecipe()
             recipeRow.appendChild(article);
             article.setAttribute("tabindex", "0")
-            // console.log(article.childNodes);
 
             const addIngredient = document.querySelector(".ingredientsList_" + item.id)
 
@@ -90,8 +94,8 @@ function displayRecipes(recipesArray, noRecipe) {
 
 };
 
+/*Fonction d'affichage des differents filtre au clique*/
 function displayFilter() {
-
 
     for (let i = 0; i < filterArrow.length; i++) {
 
@@ -103,6 +107,7 @@ function displayFilter() {
         filterArrow[i].addEventListener("click", () => {
             selectedFilter.classList.toggle("d-none")
             selectedFilter.classList.toggle("list")
+            filterArrow[i].classList.toggle("select")
 
             // selectedFilter.classList.toggle("active")
 

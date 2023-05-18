@@ -21,9 +21,15 @@ function initFilter() {
 
 function filterSort(recipeList) {
 
-    cleanProductList(recipeList)
-    cleanApplianceList(recipeList)
-    cleanUstensilsList(recipeList)
+    const productList = cleanProductList(recipeList)
+    displayProductList(productList)
+
+    const applianceList = cleanApplianceList(recipeList)
+    displayApplianceList(applianceList)
+
+    const ustensilList = cleanUstensilsList(recipeList)
+    displayUstensilList(ustensilList)
+
 }
 
 //foncion de filtre des ingrédients
@@ -37,6 +43,11 @@ function cleanProductList(recipeList) {
         })
     })
     const cleanAllProductList = [...new Set(allProductList)]
+    return (cleanAllProductList)
+}
+
+/*Fonction d'affichage d'ajout des ingredients à la liste*/
+function displayProductList(cleanAllProductList) {
 
     const IngredientListe = document.querySelector(".ingredientList")
 
@@ -44,10 +55,11 @@ function cleanProductList(recipeList) {
         IngredientListe.insertAdjacentHTML(
             "beforeend",
             `
-            <li class="bg-primary rounded border-0 p-3 productItem">${element}</li>
+            <li class="text-light border-0 p-3 productItem">${element}</li>
             `
         )
     })
+
 }
 
 //fonction de filtre des appareils
@@ -58,21 +70,27 @@ function cleanApplianceList(recipeList) {
         allApplianceList.push(item.appliance)
     })
 
-    const cleanallApplianceList = [...new Set(allApplianceList)]
+    const cleanAllApplianceList = [...new Set(allApplianceList)]
+
+    return (cleanAllApplianceList)
+}
+
+/*Fonction d'ajout des appareils à la liste*/
+function displayApplianceList(cleanAllApplianceList) {
 
     const applianceListe = document.querySelector(".appareilsList")
 
-    cleanallApplianceList.forEach(element => {
+    cleanAllApplianceList.forEach(element => {
         applianceListe.insertAdjacentHTML(
             "beforeend",
             `
-            <li class="rounded border-0 p-3 applianceItem">${element}</li>
+            <li class="text-light border-0 p-3 applianceItem">${element}</li>
             `
         )
     })
 }
 
-//foncion de filtre des ustensiles
+//fonction de filtre des ustensiles
 function cleanUstensilsList(recipeList) {
 
     const allUstensilsList = []
@@ -86,6 +104,12 @@ function cleanUstensilsList(recipeList) {
 
     const cleanAllUstensilesList = [...new Set(allUstensilsList)]
 
+    return (cleanAllUstensilesList)
+}
+
+//fonction d'ajout des ustensils à la liste
+function displayUstensilList(cleanAllUstensilesList) {
+
     const ustensilesListe = document.querySelector(".ustensilesList")
     // IngredientListe.innerHTML = " ";
 
@@ -93,9 +117,59 @@ function cleanUstensilsList(recipeList) {
         ustensilesListe.insertAdjacentHTML(
             "beforeend",
             `
-            <li class="rounded border-0 p-3 ustensileItem">${element}</li>
+            <li class="text-light p-3 ustensileItem">${element}</li>
             `
         )
     })
 }
 
+//fonction de recuperation des recettes triées
+function recipeSort() {
+    const searchString = document.querySelector(".searchbar").value
+    const recipesArray = Array.from(recipes) //copie de la liste des recettes
+    const cleanMergeRecipe = filterRecipe(recipesArray, searchString)
+
+    return (cleanMergeRecipe)
+}
+//Fonction de gestion des clique sur les filtres d'ingrédients
+function ingredientFilter(e) {
+
+    const searchString = e.target.value.toLowerCase()
+    const cleanMergeRecipe = recipeSort()
+    const listeProduits = cleanProductList(cleanMergeRecipe)
+    console.log(listeProduits);
+    console.log(e.target.value);
+
+    const filterItem = listeProduits.filter(el => el.toLowerCase().includes(searchString))
+    console.log(filterItem);
+
+
+}
+
+//Fonction de gestion des clique sur les filtres des appareils
+function appareilFilter(e) {
+
+    const searchString = e.target.value.toLowerCase()
+    const cleanMergeRecipe = recipeSort()
+    const listeAppareils = cleanApplianceList(cleanMergeRecipe)
+    console.log(listeAppareils);
+    console.log(e.target.value);
+
+    const filterItem = listeAppareils.filter(el => el.toLowerCase().includes(searchString))
+    console.log(filterItem);
+
+}
+
+//Fonction de gestion des clique sur les filtres des ustensils
+function ustensilFilter(e) {
+
+    const searchString = e.target.value.toLowerCase()
+    const cleanMergeRecipe = recipeSort()
+    const listeUstensils = cleanUstensilsList(cleanMergeRecipe)
+    console.log(listeUstensils);
+    console.log(e.target.value);
+
+    const filterItem = listeUstensils.filter(el => el.toLowerCase().includes(searchString))
+    console.log(filterItem);
+
+}
