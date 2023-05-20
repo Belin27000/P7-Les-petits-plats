@@ -9,8 +9,10 @@ const ustensilInput = document.querySelector(".inputUstensiles")
 async function init() {
     let recipesArray = Array.from(recipes)
 
-
+    //Affiche toutes les recettes et les filtres directement au lancement de la page
     displayRecipes(recipesArray);
+    filterSort(recipesArray);
+
 
     searchInput.addEventListener("input", filterData) //Recherche les recettes du champs recherche dans searchRecipe.js
     ingredientInput.addEventListener("input", ingredientFilter) //Filtre les ingrédients du champs recherche dans filterInput.js
@@ -23,7 +25,7 @@ async function init() {
 
 //Fonction d'affichage de toutes les recettes
 function displayRecipes(recipesArray, noRecipe) {
-
+    //creation et ajout du container pour recevoir les recettes
     const recipeCont = document.querySelector(".allRecipes")
     recipeCont.classList.add("container");
     const recipeRow = document.createElement("div")
@@ -105,6 +107,7 @@ function displayFilter() {
             selectedFilter.classList.remove("d-none")
         }
         filterArrow[i].addEventListener("click", () => {
+
             selectedFilter.classList.toggle("d-none")
             selectedFilter.classList.toggle("list")
             filterArrow[i].classList.toggle("select")

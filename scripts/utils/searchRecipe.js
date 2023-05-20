@@ -7,7 +7,7 @@ function filterData(e) {
     const recipesArray = Array.from(recipes) //copie de la liste des recettes
     let searchbar = document.querySelector(".searchbar");
 
-
+    console.log(recipesArray);
 
     if (searchString.length >= 3) {
 
@@ -28,12 +28,11 @@ function filterData(e) {
         }
         // console.log(cleanMergeRecipe);
     } else {
-        // if (i === 0)
+        //Affiche toutes les recettes et filtres si moins de 3 caractères dans la searchbar principale
         initFilter()
-        // console.log(cleanMergeRecipe);
         recipeRow.innerHTML = ""
+        filterSort(recipesArray);
         displayRecipes(recipesArray)
-
     }
 
 
@@ -65,9 +64,10 @@ function filterData(e) {
     }
 
 }
+
 function filterRecipe(recipesArray, searchString) {
 
-    //vérifie si le texte recherché est dans la liste de produuit des recettes
+    //vérifie si le texte recherché est dans la liste de produit des recettes
     recipesArray.forEach(item => {
         item.ingredients.forEach(products => {
 
@@ -85,6 +85,6 @@ function filterRecipe(recipesArray, searchString) {
 
     //On filtre la liste sans doublons
     const filteredCleanMergeRecipe = cleanMergeRecipe.filter(el => el.name.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString))
-
     return (filteredCleanMergeRecipe)
 }
+
