@@ -1,27 +1,26 @@
 const searchInput = document.querySelector(".form-control")
 const filterArrow = document.querySelectorAll(".filterArrow button")
 const filterCont = document.querySelectorAll(".filterArrow")
-let recipesArray;
 const ingredientInput = document.querySelector(".inputingredient")
 const applianceInput = document.querySelector(".inputAppareils")
 const ustensilInput = document.querySelector(".inputUstensiles")
-//J'initialise mon marionetiste
+let recipesArray = Array.from(recipes)
+
+//J'initialise mon init
 async function init() {
-    let recipesArray = Array.from(recipes)
 
     //Affiche toutes les recettes et les filtres directement au lancement de la page
     displayRecipes(recipesArray);
     filterSort(recipesArray);
-
-
+    this.recipesArray = recipesArray;
     searchInput.addEventListener("input", filterData) //Recherche les recettes du champs recherche dans searchRecipe.js
     ingredientInput.addEventListener("input", ingredientFilter) //Filtre les ingrédients du champs recherche dans filterInput.js
     applianceInput.addEventListener("input", appareilFilter) //Filtre les appareils du champs recherche dans filterInput.js
     ustensilInput.addEventListener("input", ustensilFilter) //Filtre les appareils du champs recherche dans filterInput.js
-
     displayFilter();
 
 }
+// var option = document.onclick
 
 //Fonction d'affichage de toutes les recettes
 function displayRecipes(recipesArray, noRecipe) {
@@ -32,8 +31,8 @@ function displayRecipes(recipesArray, noRecipe) {
     recipeRow.classList.add("row")
     recipeCont.appendChild(recipeRow)
 
-
     if (recipesArray.length === 0) {
+        //Message d'infomation qu'aucune recette n'a ete trouve
         console.log(noRecipe);
 
         recipeRow.appendChild(noRecipe)
@@ -94,35 +93,106 @@ function displayRecipes(recipesArray, noRecipe) {
         });
     }
 
+
 };
 
-/*Fonction d'affichage des differents filtre au clique*/
+/*Fonction d'affichage des differents filtres au clique*/
 function displayFilter() {
 
-    for (let i = 0; i < filterArrow.length; i++) {
+    let AllListeBtn = document.querySelectorAll(".allFilter");
+    let allUl = document.querySelectorAll(".allList")
 
-        const selectedFilter = filterCont[i].querySelector("ul")
+    AllListeBtn.forEach(Btn => {
+        btnArrow = Btn.querySelector("button")
+        btnArrow.addEventListener("click", function (ul) {
 
-        if (!selectedFilter.classList.contains("d-none")) {
-            selectedFilter.classList.remove("d-none")
-        }
-        filterArrow[i].addEventListener("click", () => {
+            ul = Btn.querySelector("ul")
+            allUl.forEach(liste => {//ferme les filtres non selectionné au click
 
-            selectedFilter.classList.toggle("d-none")
-            selectedFilter.classList.toggle("list")
-            filterArrow[i].classList.toggle("select")
-
-            // selectedFilter.classList.toggle("active")
-
-            console.log(selectedFilter)
-
-
+                if (!liste.classList.contains("d-none") && ul != liste) {
+                    liste.classList.add("d-none")
+                }
+            })
+            // console.log(ul);
+            ul.classList.toggle("d-none");
+            ul.classList.add("list");
+            selectFilter()
         })
+        // console.log(AllLi);
+    })
+}
+//function dajout du filtre selectionné
+function selectFilter() {
 
-    }
+    let AllLi = document.querySelectorAll(".allList > li");
+
+    const filterActivated = document.querySelector(".filterSelected")
+
+    AllLi.forEach(li => {
+        li.addEventListener("click", function (e) {
+            let targetValue = e.target.innerText
+
+            if (e.target.classList.contains("productItem")) {
+                console.log("produit");
+                // let targetValue = checkLi(e);
+
+
+                filterActivated.insertAdjacentHTML(
+                    "beforeend",
+                    `
+                    <li class="text-light border-0 productItem bg-primary">${targetValue}<i class="far fa-times-circle"></i></li>
+                    `
+                )
+                li.remove()
+
+            } else if (e.target.classList.contains("applianceItem")) {
+                console.log("appliance");
+                filterActivated.insertAdjacentHTML(
+                    "beforeend",
+                    `
+                    <li class="text-light border-0 applianceItem">${targetValue}<i class="far fa-times-circle"></i></li>
+                    `
+                )
+                li.remove()
+            } else if (e.target.classList.contains("ustensileItem")) {
+                console.log("ustensile");
+
+                filterActivated.insertAdjacentHTML(
+                    "beforeend",
+                    `
+                    <li class="text-light ustensileItem">${targetValue}<i class="far fa-times-circle"></i></li>
+                    `
+                )
+                li.remove()
+            }
+
+            const recipeRow = document.querySelector(".allRecipes")
+            recipeRow.innerHTML = ""
+            displaySelectedFilter()
+        })
+    })
+
+}
+function displaySelectedFilter() {
+    let allFilterActivated = document.querySelectorAll(".filterSelected > li")
+    const filterArray = []
+    //creation du tableau des filtre selectionné
+    allFilterActivated.forEach(items => {
+        filterArray.push(items)
+
+    })
+
+    const searchString = searchInput.value
+    const cleanMergeRecipe = filterRecipe(recipesArray, searchString, filterArray)
+    console.log(cleanMergeRecipe);
+    // console.log(filterArray);
+
+    initFilter()
+
+    filterSort(cleanMergeRecipe);
+    displayRecipes(cleanMergeRecipe);
+    return cleanMergeRecipe
 }
 
-
-
-
 init();
+
