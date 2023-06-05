@@ -27,6 +27,7 @@ function initFilter() {
 
 function filterSort(recipeList) {
 
+    // console.log(recipeList);
     const productList = cleanProductList(recipeList)
     displayProductList(productList)
 
@@ -39,27 +40,29 @@ function filterSort(recipeList) {
 }
 //Fonction de gestion des clique sur les filtres d'ingrédients
 function ingredientFilter(e) {
-
     const searchString = e.target.value.toLowerCase()
     const cleanMergeRecipe = recipeSort()
+    console.log(cleanMergeRecipe);
     const listeProduits = cleanProductList(cleanMergeRecipe)
 
 
     const filterItem = listeProduits.filter(el => el.toLowerCase().includes(searchString))
     displayProductList(filterItem)
+    selectFilter()
+
 }
 
 //Fonction de gestion des clique sur les filtres des appareils
 function appareilFilter(e) {
 
     const searchString = e.target.value.toLowerCase()
+    console.log(searchString);
     const cleanMergeRecipe = recipeSort()
     const listeAppareils = cleanApplianceList(cleanMergeRecipe)
 
     const filterItem = listeAppareils.filter(el => el.toLowerCase().includes(searchString))
-    applianceListe.innerHTML = "";
     displayApplianceList(filterItem)
-    // displayFilter()
+    selectFilter()
 }
 
 //Fonction de gestion des clique sur les filtres des ustensils
@@ -71,9 +74,9 @@ function ustensilFilter(e) {
 
 
     const filterItem = listeUstensils.filter(el => el.toLowerCase().includes(searchString))
-    ustensilesListe.innerHTML = "";
     displayUstensilList(filterItem)
-    // displayFilter()
+    selectFilter()
+
 }
 
 //foncion de filtre des ingrédients
@@ -140,7 +143,7 @@ function cleanApplianceList(recipeList) {
 function displayApplianceList(cleanAllApplianceList) {
 
     const applianceListe = document.querySelector(".appareilsList")
-
+    applianceListe.innerHTML = ""
     cleanAllApplianceList.forEach(element => {
         applianceListe.insertAdjacentHTML(
             "beforeend",
@@ -185,7 +188,7 @@ function cleanUstensilsList(recipeList) {
 function displayUstensilList(cleanAllUstensilesList) {
 
     const ustensilesListe = document.querySelector(".ustensilesList")
-    // IngredientListe.innerHTML = " ";
+    ustensilesListe.innerHTML = " ";
 
     cleanAllUstensilesList.forEach(element => {
         ustensilesListe.insertAdjacentHTML(
@@ -203,14 +206,14 @@ function recipeSort() {
     const recipesArray = Array.from(recipes) //copie de la liste des recettes
 
     //renvoi le tableau de filtre si des filtres ont été selectionné
-    let allFilterActivated = document.querySelectorAll(".filterSelected > li")
-    const filterArray = []
-    //creation du tableau des filtre selectionné
-    allFilterActivated.forEach(items => {
-        filterArray.push(items)
+    // let allFilterActivated = document.querySelectorAll(".filterSelected > li")
+    // const filterArray = []
+    // //creation du tableau des filtre selectionné
+    // allFilterActivated.forEach(items => {
+    //     filterArray.push(items)
 
-    })
-    const cleanMergeRecipe = filterRecipe(recipesArray, searchString, filterArray)
+    // })
+    const cleanMergeRecipe = filterRecipe(recipesArray, searchString)
 
     return (cleanMergeRecipe)
 }
