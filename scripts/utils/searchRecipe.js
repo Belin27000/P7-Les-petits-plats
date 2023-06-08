@@ -134,7 +134,16 @@ function filterRecipe(recipesArray, searchString, filterArray) {
                 }
             })
         })
+        //Renvoi le tableau filtré avec un seul type de filtre selectionné
+        if (ingredientArray.length > 0 && applianceArray.length === 0 && ustensilArray.length === 0) {
+            productArray = ingredientArray
+        } else if (ingredientArray.length === 0 && applianceArray.length > 0 && ustensilArray.length === 0) {
+            productArray = applianceArray
+        } else if (ingredientArray.length === 0 && applianceArray.length > 0 && ustensilArray.length === 0) {
+            productArray = ustensilArray
+        }
 
+        //Renvoi le tableau filtré avec tous les types de filtre selectionné
         if (ingredientArray.length > 0 && applianceArray.length > 0 && ustensilArray.length > 0) {
             ingredientArray.forEach(ingredientItemFilter => {
                 applianceArray.forEach(appItemFilter => {
@@ -148,7 +157,7 @@ function filterRecipe(recipesArray, searchString, filterArray) {
                 })
             })
         }
-
+        //Renvoi le tableau filtré avec les filtres ingredient et appareil selectionnés uniquement
         if (ingredientArray.length > 0 && applianceArray.length > 0 && ustensilArray.length === 0) {
             ingredientArray.forEach(ingredientItemFilter => {
                 applianceArray.forEach(appItemFilter => {
@@ -158,13 +167,31 @@ function filterRecipe(recipesArray, searchString, filterArray) {
                 })
             })
         }
+        //Renvoi le tableau filtré avec les filtres ingredient et ustensil selectionnés uniquement
+        if (ingredientArray.length > 0 && applianceArray.length === 0 && ustensilArray.length > 0) {
+            ingredientArray.forEach(ingredientItemFilter => {
+                ustensilArray.forEach(ustensilItemFilter => {
+                    if (ingredientItemFilter === ustensilItemFilter) {
+                        productArray.push(ingredientItemFilter)
+                    }
+                })
+            })
+        }
+        //Renvoi le tableau filtré avec les filtres appareil et ustensil selectionnés uniquement
+        if (ingredientArray.length === 0 && applianceArray.length > 0 && ustensilArray.length > 0) {
+            applianceArray.forEach(appItemFilter => {
+                ustensilArray.forEach(ustensilItemFilter => {
+                    if (appItemFilter === ustensilItemFilter) {
+                        productArray.push(appItemFilter)
+                    }
+                })
+            })
+        }
 
-        console.log(productArray);
         // productArray = ingredientArray
         console.log(ingredientArray);
         console.log(applianceArray);
         console.log(ustensilArray);
-        console.log(productArray);
 
 
         console.log(productArray);
