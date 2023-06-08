@@ -27,7 +27,6 @@ function initFilter() {
 
 function filterSort(recipeList) {
 
-    // console.log(recipeList);
     const productList = cleanProductList(recipeList)
     displayProductList(productList)
 
@@ -42,7 +41,6 @@ function filterSort(recipeList) {
 function ingredientFilter(e) {
     const searchString = e.target.value.toLowerCase()
     const cleanMergeRecipe = recipeSort()
-    console.log(cleanMergeRecipe);
     const listeProduits = cleanProductList(cleanMergeRecipe)
 
 
@@ -56,7 +54,6 @@ function ingredientFilter(e) {
 function appareilFilter(e) {
 
     const searchString = e.target.value.toLowerCase()
-    console.log(searchString);
     const cleanMergeRecipe = recipeSort()
     const listeAppareils = cleanApplianceList(cleanMergeRecipe)
 

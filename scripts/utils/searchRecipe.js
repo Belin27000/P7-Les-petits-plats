@@ -1,5 +1,9 @@
-const productArray = [] //initialisation du tableau de filtre
+let productArray = [] //initialisation du tableau de filtre
+let ingredientArray = []
+let applianceArray = []
+let finalArray = []
 let cleanMergeRecipe = []
+
 
 function filterData(e) {
     const recipeRow = document.querySelector(".allRecipes")
@@ -13,7 +17,6 @@ function filterData(e) {
 
         //recherche les recettes correspondante au texte taper dans la searchBar
         const cleanMergeRecipe = filterRecipe(recipesArray, searchString)
-        console.log(cleanMergeRecipe);
         let article = noRecipe();
 
         displayRecipes(cleanMergeRecipe, article);
@@ -25,9 +28,7 @@ function filterData(e) {
             filterSort(cleanMergeRecipe);
         }
 
-        // console.log(cleanMergeRecipe);
     } else {
-        // console.log(recipesArray);
         //Affiche toutes les recettes et filtres si moins de 3 caractères dans la searchbar principale
         initFilter()
         recipeRow.innerHTML = ""
@@ -68,12 +69,7 @@ function noRecipe() {
 }
 
 function filterRecipe(recipesArray, searchString, filterArray) {
-    // console.log(recipesArray);
-    // console.log(searchString.length);
-    // console.log(filterArray);
-    // console.log(recipesArray);
-    if (filterArray == undefined) { //trie des recettes uniquement avec la searchBar
-
+    function simpleFilterRecipe() {
 
         // vérifie si le texte recherché est dans la liste de produit des recettes
         recipesArray.forEach(item => {
@@ -85,53 +81,94 @@ function filterRecipe(recipesArray, searchString, filterArray) {
                 }
             })
         })
-        console.log(productArray);
         //vérifie si le texte recherché est dans le nom ou la description des recettes
         const filteredArr = recipesArray.filter(el => el.name.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString))
         const mergeRecipe = [].concat(productArray, filteredArr);
         let cleanMergeRecipe = [...new Set(mergeRecipe)] //suppression des doublons
-        console.log(cleanMergeRecipe);
 
 
         return (cleanMergeRecipe)
+    }
+    if (filterArray == undefined) { //trie des recettes uniquement avec la searchBar
+
+        cleanMergeRecipe = simpleFilterRecipe()
+        console.log(cleanMergeRecipe);
+        return (cleanMergeRecipe)
 
     } else {//trie des recettes avec les filtres et la searchBar
-        console.log(filterArray);
+        let productArray = []
+        let applianceArray = []
+        let ustensilArray = []
+        cleanMergeRecipe = simpleFilterRecipe()
 
-        const filteredArr = recipesArray.filter(el => el.name.toLowerCase().includes(searchString) || el.description.toLowerCase().includes(searchString))
-        // console.log(filteredArr);
-        console.log(filteredArr);
-        filterArray.forEach(filter => {
-            console.log(filter);
-            if (filter.classList.contains("productItem")) {
-                console.log(filter.innerText);
-                filteredArr.forEach(item => {
-                    item.ingredients.forEach(products => {
 
+
+        cleanMergeRecipe.forEach(item => {//pour chaque recettes
+            filterArray.forEach(filter => {//Tu prends chaque filtre du tableau des filtres selectionne et pour chacun
+                filterText = filter.innerText
+                if (filter.classList.contains("productItem")) {//si le filtre selectionné contient prodctItem, alors
+                    item.ingredients.forEach(products => {//pour chaque produit de la recette on verifie qu'il contient le filtre
                         let product = products.ingredient
-                        if (product === filter.innerText) {
-                            productArray.push(item)
-                            console.log(productArray);
+                        if (product.toLowerCase() === filterText.toLowerCase()) {// si il le contient, on l'ajoute a notre tableau de trie
+                            ingredientArray.push(item)
+                        }//sinon il n'est pas ajouté
+                    })
+                }
+                if (filter.classList.contains("applianceItem")) {
+                    let appliance = item.appliance
+                    if (appliance.toLowerCase() === filterText.toLowerCase()) {// si il le contient, on l'ajoute a notre tableau de trie
+                        applianceArray.push(item)
+                        console.log(applianceArray);
+                    }
+                }
+                if (filter.classList.contains("ustensileItem")) {
+                    console.log(filterText.toLowerCase());
+                    item.ustensils.forEach(ustensils => {
+                        let ustensil = ustensils.ustensils
+                        // console.log(ustensils);
+                        if (ustensils.toLowerCase() === filterText.toLowerCase()) {// si il le contient, on l'ajoute a notre tableau de trie
+                            ustensilArray.push(item)
+                            console.log(ustensilArray);
                         }
                     })
-                })
-            } else if (filter.classList.contains("applianceItem")) {
-                filteredArr.forEach(item => {
-                    let appliance = item.appliance
-                    if (appliance === filter.innerText) {
-                        productArray.push(item)
+                }
+            })
+        })
+
+        if (ingredientArray.length > 0 && applianceArray.length > 0 && ustensilArray.length > 0) {
+            ingredientArray.forEach(ingredientItemFilter => {
+                applianceArray.forEach(appItemFilter => {
+                    if (ingredientItemFilter === appItemFilter) {
+                        ustensilArray.forEach(ustensilItemFilter => {
+                            if (ingredientItemFilter === ustensilItemFilter) {
+                                productArray.push(ingredientItemFilter)
+                            }
+                        })
                     }
                 })
+            })
+        }
 
-                console.log("appliance");
-            } else if (filter.classList.contains("ustensileItem")) {
-                console.log("ustensile");
+        if (ingredientArray.length > 0 && applianceArray.length > 0 && ustensilArray.length === 0) {
+            ingredientArray.forEach(ingredientItemFilter => {
+                applianceArray.forEach(appItemFilter => {
+                    if (ingredientItemFilter === appItemFilter) {
+                        productArray.push(ingredientItemFilter)
+                    }
+                })
+            })
+        }
 
-            }
+        console.log(productArray);
+        // productArray = ingredientArray
+        console.log(ingredientArray);
+        console.log(applianceArray);
+        console.log(ustensilArray);
+        console.log(productArray);
 
-        })
+
+        console.log(productArray);
         const filteredCleanMergeRecipe = productArray
-        console.log(filteredCleanMergeRecipe);
         return (filteredCleanMergeRecipe)
 
     }
