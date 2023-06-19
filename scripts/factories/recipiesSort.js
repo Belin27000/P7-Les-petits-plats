@@ -30,8 +30,8 @@ class Recipes {
     createRecipe() {
         // console.log(this.ingredients);
 
-        const article = document.createElement('div')
-        article.classList.add("col-xl-4", "card", "mb-5", "border-0", "p-0")
+        const article = document.createElement("div");
+        article.classList.add("col-xl-4", "card", "mb-5", "border-0", "p-0");
         article.insertAdjacentHTML(
             "beforeend",
             `
@@ -51,9 +51,9 @@ class Recipes {
                         </div>
                         </div>
                         `
-        )
+        );
 
-        return (article)
+        return (article);
     }
 
 
