@@ -2,8 +2,7 @@
  * La classe Recipes représente la structure de base pour toutes les recettes
  */
 
-// eslint-disable-next-line no-unused-vars
-class FactoRecipes {
+class Recipes {
     /**
      * Utilisation d'un construcor pour la création d'une nouvelle recette
      * @constructor
@@ -29,26 +28,10 @@ class FactoRecipes {
     }
 
     createRecipe() {
+        // console.log(this.ingredients);
 
-        //creation de la liste d'ingrédients pour chaque recette 
-        let listeLiIngredients = "";
-        this.ingredients.forEach(ingredient => {
-            let ingredientData = " ";
-            if (ingredient.unit) {
-                ingredientData += ingredient.ingredient + ": " + ingredient.quantity + " " + ingredient.unit;
-            } else if (ingredient.quantity) {
-                ingredientData = ingredient.ingredient + ": " + ingredient.quantity;
-            } else {
-                ingredientData = ingredient.ingredient;
-            }
-
-
-            listeLiIngredients += `<li>${ingredientData}</li>`;
-        });
-
-        //fabrication de chaque carte de recette
-        const article = document.createElement("div");
-        article.classList.add("card", "mb-5", "border-0", "p-0");
+        const article = document.createElement("div")
+        article.classList.add("col-xl-4", "card", "mb-5", "border-0", "p-0")
         article.insertAdjacentHTML(
             "beforeend",
             `
@@ -61,7 +44,7 @@ class FactoRecipes {
                             </div>
                         </div>
                         <div class="recipe">
-                            <ul class="ingredientsList_${this.id} ingredientList">${listeLiIngredients}</ul>
+                            <ul class="ingredientsList_${this.id} ingredientList"></ul>
                             <div class="recipeDes">
                                 <p >${this.description}</p>
                             </div>
@@ -69,9 +52,11 @@ class FactoRecipes {
                         </div>
                         `
         );
-
+        console.log(article);
         return (article);
     }
+
+
 
 
 

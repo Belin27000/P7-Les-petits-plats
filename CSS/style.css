@@ -163,9 +163,7 @@
 }
 
 
-.productItem,
-.ustensileItem,
-.applianceItem {
+li {
     list-style-type: none;
 }
 
@@ -199,6 +197,10 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+}
+
+.recipe ul {
+    padding-left: 0;
 }
 
 
