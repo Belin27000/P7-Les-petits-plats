@@ -3,7 +3,7 @@
 function displayAll(recipes) {
 
     displayData(recipes);
-
+    displayFilterDropdown(recipes);
 
 
 
@@ -69,21 +69,19 @@ function displayAll(recipes) {
 
 
 }
+function displayFilterDropdown(recipes) {
+    console.log("on est là");
+    creationFilter(recipes)
+}
 
 //Fonction d'affichage des recettes
 function displayData(recipes) {
 
     const recipesSection = document.querySelector(".allRecipes");
     recipesSection.innerHTML = " ";
+    recipesSection.classList.add("container", "d-flex", "flex-wrap");
 
-    recipesSection.classList.add("container",);
-    const recipeRow = document.createElement("div");
-    // recipeRow.classList.add("row", "col-md-4");
-
-    recipesSection.appendChild(recipeRow);
-
-
-    recipes.recipes.forEach(recipe => {
+    recipes.forEach(recipe => {
 
         let newRecipe = new FactoRecipes(recipe);
 
