@@ -1,9 +1,74 @@
 
 //Fonction d'affichage de toutes les recettes
 function displayAll(recipes) {
-
     displayData(recipes);
-    displayFilterDropdown(recipes);
+    creationFilter(recipes);
+    tagClicked(recipes)
+
+
+
+}
+
+//Fonction d'affichage des recettes
+function displayData(recipes) {
+    const recipesSection = document.querySelector(".allRecipes");
+    recipesSection.innerHTML = " ";
+    recipesSection.classList.add("container", "d-flex", "flex-wrap");
+
+    recipes.forEach(recipe => {
+
+        let newRecipe = new FactoRecipes(recipe);
+
+        const Card = newRecipe.createRecipe(recipe);
+        recipesSection.appendChild(Card);
+    });
+
+}
+
+//message si aucune recette n'est trouvée
+function noRecipe() {
+
+    const article = document.createElement('div');
+    article.classList.add("col-xl-4", "card", "mb-5", "border-0", "p-0");
+    article.insertAdjacentHTML(
+        "beforeend",
+        `
+                <div class="card-body bg-light rounded-bottom-3">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="d-flex flex-row recipeTime">
+                        Aucune recette ne correspond à votre critère… vous pouvez
+                        chercher « tarte aux pommes », « poisson », etc
+                        </div>
+                    </div>
+                </div>
+                    `
+    );
+    return (article);
+}
+
+//--- fonction d'affichage des dropdonws après création dans creationFilter---//
+function displayFilterDropdown(dropdown) {
+
+
+    let filterArrow = document.querySelectorAll(".filterArrow");
+
+    filterArrow.forEach((Arrow) => {
+
+        Arrow.addEventListener("click", function (event) {
+
+            const containerDivUl = Arrow.closest("div.allFilter");
+            let containerUl = containerDivUl.querySelector('.allList');
+            containerUl.classList.toggle("d-none");//affichage du filtre au clique
+            containerUl.classList.toggle("list")//mise en forme des listes au clique
+
+            event.target.classList.toggle('select');
+        });
+    });
+
+}
+
+
+
 
 
 
@@ -66,48 +131,3 @@ function displayAll(recipes) {
 
     //     });
     // }
-
-
-}
-function displayFilterDropdown(recipes) {
-    console.log("on est là");
-    creationFilter(recipes)
-}
-
-//Fonction d'affichage des recettes
-function displayData(recipes) {
-
-    const recipesSection = document.querySelector(".allRecipes");
-    recipesSection.innerHTML = " ";
-    recipesSection.classList.add("container", "d-flex", "flex-wrap");
-
-    recipes.forEach(recipe => {
-
-        let newRecipe = new FactoRecipes(recipe);
-
-        const Card = newRecipe.createRecipe(recipe);
-        recipesSection.appendChild(Card);
-    });
-
-}
-
-//message si aucune recette n'est trouvée
-function noRecipe() {
-
-    const article = document.createElement('div');
-    article.classList.add("col-xl-4", "card", "mb-5", "border-0", "p-0");
-    article.insertAdjacentHTML(
-        "beforeend",
-        `
-                <div class="card-body bg-light rounded-bottom-3">
-                    <div class="d-flex flex-row justify-content-between">
-                        <div class="d-flex flex-row recipeTime">
-                        Aucune recette ne correspond à votre critère… vous pouvez
-                        chercher « tarte aux pommes », « poisson », etc
-                        </div>
-                    </div>
-                </div>
-                    `
-    );
-    return (article);
-}
