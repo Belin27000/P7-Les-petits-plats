@@ -2,6 +2,7 @@
 //Fonction d'affichage de toutes les recettes
 function displayAll(recipes) {
     displayData(recipes);
+    console.log(recipes);
     creationFilter(recipes);
     tagClicked(recipes)
 
@@ -48,20 +49,31 @@ function noRecipe() {
 
 //--- fonction d'affichage des dropdonws après création dans creationFilter---//
 function displayFilterDropdown(dropdown) {
-
-
+    let i = 0
+    console.log(dropdown);
     let filterArrow = document.querySelectorAll(".filterArrow");
 
+
+    let count = 0;
+    const closureIcrement = () => {
+        count += 1
+        return count;
+    }
+    console.log(count);
+    // console.log(counter);
     filterArrow.forEach((Arrow) => {
 
         Arrow.addEventListener("click", function (event) {
 
+            // console.log(event);
             const containerDivUl = Arrow.closest("div.allFilter");
             let containerUl = containerDivUl.querySelector('.allList');
             containerUl.classList.toggle("d-none");//affichage du filtre au clique
             containerUl.classList.toggle("list")//mise en forme des listes au clique
 
             event.target.classList.toggle('select');
+
+
         });
     });
 

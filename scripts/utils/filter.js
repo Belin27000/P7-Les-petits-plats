@@ -1,18 +1,22 @@
 //--Fonction d'ajout des listes d'item dans chacun des dopdowns
 function creationFilter(recipes) {
+    console.log(recipes);
     let inputingredient = document.querySelector(".inputingredient");
     let ingredientsListContainer = document.querySelector(".ingredientList");
     inputingredient.innerHTML = " ";
+    ingredientsListContainer.innerHTML = " ";
     let ingredientsList = [];
 
     let inputAppareils = document.querySelector(".inputAppareils");
     let AppareilsListContainer = document.querySelector(".appareilsList");
+    AppareilsListContainer.innerHTML = " ";
     inputAppareils.innerHTML = " ";
     let appareilsList = [];
 
     let inputUstensiles = document.querySelector(".inputUstensiles");
     let UstensilesListContainer = document.querySelector(".ustensilesList");
     inputUstensiles.innerHTML = " ";
+    UstensilesListContainer.innerHTML = " ";
     let ustensilesList = [];
 
 
@@ -33,10 +37,12 @@ function creationFilter(recipes) {
                 ingredientsList = ingredientsList.filter((ingredient, index) => {
                     return ingredientsList.indexOf(ingredient) == index;
                 });
+                console.log(allTags);
 
                 // On créé l'HTML pour chaque ingrédients
                 for (let i = 0; i < ingredientsList.length; i++) {
                     let element = ingredientsList[i];
+
                     if (allTags.filter((e) => {
                         return e.value.toLowerCase() == element.toLowerCase();
                     }).length == 0) {
@@ -48,6 +54,7 @@ function creationFilter(recipes) {
                         );
                     }
                 }
+                console.log(ingredientsListContainer);
                 displayFilterDropdown(ingredientsListContainer);
                 break;
 
@@ -79,6 +86,7 @@ function creationFilter(recipes) {
                         );
                     }
                 }
+                console.log(UstensilesListContainer);
                 displayFilterDropdown(UstensilesListContainer)
                 break
 
