@@ -1,6 +1,33 @@
+document.addEventListener("DOMContentLoaded", function () {// gestion de l'affichage des dropdown une fois le DOM chargé
+
+
+    function init() {
+        eventfilterclick();
+    }
+
+    init()
+
+    function eventfilterclick() {
+        let filterArrow = document.querySelectorAll(".filterArrow");
+
+        filterArrow.forEach((Arrow) => {
+            Arrow.addEventListener("click", function (event) {
+
+                const containerDivUl = Arrow.closest("div.allFilter");
+                let containerUl = containerDivUl.querySelector('.allList');
+                containerUl.classList.toggle("d-none");//affichage du filtre au clique
+                containerUl.classList.toggle("list")//mise en forme des listes au clique
+
+                event.target.classList.toggle('select');
+            });
+        })
+    }
+
+});
+
+
 //--Fonction d'ajout des listes d'item dans chacun des dopdowns
 function creationFilter(recipes) {
-    console.log(recipes);
     let inputingredient = document.querySelector(".inputingredient");
     let ingredientsListContainer = document.querySelector(".ingredientList");
     inputingredient.innerHTML = " ";
@@ -21,6 +48,8 @@ function creationFilter(recipes) {
 
 
     let dropdownInput = document.querySelectorAll(".dropdown-input");
+
+
     for (let i = 0; i < dropdownInput.length; i++) {
         const input = dropdownInput[i];
         let getInputId = input.getAttribute("id");
@@ -37,7 +66,6 @@ function creationFilter(recipes) {
                 ingredientsList = ingredientsList.filter((ingredient, index) => {
                     return ingredientsList.indexOf(ingredient) == index;
                 });
-                console.log(allTags);
 
                 // On créé l'HTML pour chaque ingrédients
                 for (let i = 0; i < ingredientsList.length; i++) {
@@ -49,13 +77,11 @@ function creationFilter(recipes) {
                         ingredientsListContainer.insertAdjacentHTML(
                             "beforeend",
                             `
-                            <li><a class="dropdown-item" href="#">${element}</a></li>
+                            <li><a class="dropdown-item p-2" href="#">${element}</a></li>
                             `
                         );
                     }
                 }
-                console.log(ingredientsListContainer);
-                displayFilterDropdown(ingredientsListContainer);
                 break;
 
             case 'inputUstensiles':
@@ -81,13 +107,11 @@ function creationFilter(recipes) {
                         UstensilesListContainer.insertAdjacentHTML(
                             "beforeend",
                             `
-                            <li><a class="dropdown-item" href="#">${element}</a></li>
+                            <li><a class="dropdown-item p-2" href="#">${element}</a></li>
                             `
                         );
                     }
                 }
-                console.log(UstensilesListContainer);
-                displayFilterDropdown(UstensilesListContainer)
                 break
 
             case 'inputAppareils':
@@ -110,12 +134,11 @@ function creationFilter(recipes) {
                         AppareilsListContainer.insertAdjacentHTML(
                             "beforeend",
                             `
-                        <li><a class="dropdown-item" href="#">${element}</a></li>
+                        <li><a class="dropdown-item p-2" href="#">${element}</a></li>
                         `
                         );
                     }
                 }
-                displayFilterDropdown(AppareilsListContainer)
                 break
         }
 

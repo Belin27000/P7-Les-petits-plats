@@ -72,8 +72,10 @@ function tagClicked(recipes) {
                     filteredRecipes.push(recipe);
                 }
             }
-            recipes = filteredRecipes
-            displayAll(recipes)
+            newRecipes = filteredRecipes
+            displayAll(newRecipes)
+
+
             tagBtn.addEventListener("click", () => {
 
                 let updatedAllTags = [];
@@ -83,17 +85,18 @@ function tagClicked(recipes) {
                     }
                 }
                 allTags = updatedAllTags;
-                console.log(allTags);
 
                 // Prise en compte de l'input de la barre de recherche afin d'effectuer un nouveau tri à chaque tag cliqué et retiré
-                if (searchRecipes.value.length < 3) {
+                if (searchRecipes.value.length <= 3) {
                     let filterTagOption = 'one';
                     tagFilter(recipes, filterTagOption)
+                    console.log(recipes);
                     displayAll(recipes)
                     tagBtn.remove()
                     return
                 }
-                // tagFilterSecond(recipes)
+                let filterTagOption = 'two';
+                tagFilter(recipes, filterTagOption)
                 displayAll(recipes)
                 tagBtn.remove()
 

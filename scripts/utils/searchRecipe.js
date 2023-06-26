@@ -2,19 +2,15 @@ let searchRecipes = document.querySelector(".searchbar");
 searchRecipes.innerText = " ";
 //Fonction de recherche des recettes avec la searchbar principale
 function searchBar(recipes) {
-
     searchRecipes.addEventListener("keyup", () => {
         if (searchRecipes.value.length < 3) {
-            console.log(searchRecipes.value);
             let filterTagOption = 'one'
             let tagResult = tagFilter(recipes, filterTagOption)
-            console.log(tagResult);
             displayAll(tagResult);
             return;
         }
         let filterTagOption = 'two'
         let tagResult = tagFilter(recipes, filterTagOption)
-        console.log(tagResult);
         displayAll(tagResult)
     });
 }
@@ -22,7 +18,8 @@ function searchBar(recipes) {
 //---fonction de tri des recettes en fonction des filtres déjà cliqué---//
 function tagFilter(recipes, filterTagOption) {
     let newRecipes = [];
-    console.log(recipes);
+
+    // console.(allTags);
     for (let recipe of recipes) {
         let keep = true;
         for (const tag of allTags) {
@@ -37,7 +34,6 @@ function tagFilter(recipes, filterTagOption) {
                     const tagIngredient = [];
                     for (const ingre of recipe.ingredients) {
                         let result = ingre.ingredient.toLowerCase().match(tag.value.toLowerCase())
-
                         if (result && result.length > 0) {
                             tagIngredient.push(ingre);
                         }
@@ -63,6 +59,7 @@ function tagFilter(recipes, filterTagOption) {
             }
 
         }
+        // console.(keep);
         if (filterTagOption === 'one' && keep) {
             newRecipes.push(recipe);
 

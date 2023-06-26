@@ -61,18 +61,15 @@
 }
 
 
+
 /**** 3- Style apporté au boutton de trie ****/
 
 .allFilter {
     height: 100%;
+    color: white;
+
 
 }
-
-
-
-/* .hide {
-    display: none;
-} */
 
 .filter-btn {
     display: flex;
