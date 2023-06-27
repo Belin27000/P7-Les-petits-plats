@@ -43,7 +43,11 @@ function tagClicked(recipes) {
                     case 'ingredients':
                         const ingredientsMatch = [];
                         for (const ingredient of recipe.ingredients) {
-                            if (ingredient.ingredient.toLowerCase().match(tag.textContent.toLowerCase())) {
+                            let ingredientRecipe = ingredient.ingredient.toLowerCase()
+                            let tagValue = tag.textContent.toLowerCase()
+                            let result = ingredientRecipe.localeCompare(tagValue)
+                            console.log(ingredient.ingredient);
+                            if (result == 0) {
                                 ingredientsMatch.push(true);
                             } else {
                                 ingredientsMatch.push(false);
@@ -56,7 +60,10 @@ function tagClicked(recipes) {
                     case 'ustensils':
                         const ustensilsMatch = [];
                         for (const ustensil of recipe.ustensils) {
-                            if (ustensil.toLowerCase().match(tag.textContent.toLowerCase())) {
+                            let ustensilRecipe = ustensil.toLowerCase()
+                            let tagValue = tag.textContent.toLowerCase()
+                            let result = ustensilRecipe.localeCompare(tagValue)//compare les 2 chaine de caractères afin de renvoyer uniquement le resultat identiques renvoi 0 si identique
+                            if (result == 0) {
                                 ustensilsMatch.push(true);
                             } else {
                                 ustensilsMatch.push(false);
