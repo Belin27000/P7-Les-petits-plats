@@ -87,15 +87,14 @@ function tagClicked(recipes) {
                 allTags = updatedAllTags;
 
                 // Prise en compte de l'input de la barre de recherche afin d'effectuer un nouveau tri à chaque tag cliqué et retiré
-                if (searchRecipes.value.length <= 3) {
-                    let filterTagOption = 'one';
+                if (searchRecipes.value.length < 3) {
+                    let filterTagOption = 'searchBarEmpty';
                     tagFilter(recipes, filterTagOption)
-                    console.log(recipes);
                     displayAll(recipes)
                     tagBtn.remove()
                     return
                 }
-                let filterTagOption = 'two';
+                let filterTagOption = 'searchBarFilled';
                 tagFilter(recipes, filterTagOption)
                 displayAll(recipes)
                 tagBtn.remove()
