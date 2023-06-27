@@ -59,7 +59,6 @@ function tagFilter(recipes, filterTagOption) {
             }
 
         }
-        // console.(keep);
         if (filterTagOption === 'one' && keep) {
             newRecipes.push(recipe);
 
@@ -78,3 +77,18 @@ function tagFilter(recipes, filterTagOption) {
     }
     return newRecipes
 }
+
+// function tagFilter(recipes, filterTagOption) {
+//     console.log(recipes, filterTagOption);
+//     console.log(allTags);
+//     for (const tag of allTags) {
+//         console.log(tag);
+//     }
+//     const newRecipes1 = recipes.filter((recipe) => {
+//         return recipe.appliance.toLowerCase() == "blender"
+
+//     })
+//     console.log(newRecipes1);
+//     return newRecipes
+
+// }

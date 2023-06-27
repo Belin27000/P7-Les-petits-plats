@@ -82,6 +82,7 @@ function creationFilter(recipes) {
                         );
                     }
                 }
+                displayFilterDropdown(ingredientsListContainer)
                 break;
 
             case 'inputUstensiles':
@@ -112,6 +113,8 @@ function creationFilter(recipes) {
                         );
                     }
                 }
+                displayFilterDropdown(UstensilesListContainer)
+
                 break
 
             case 'inputAppareils':
@@ -139,6 +142,7 @@ function creationFilter(recipes) {
                         );
                     }
                 }
+                displayFilterDropdown(AppareilsListContainer)
                 break
         }
 

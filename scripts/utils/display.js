@@ -58,7 +58,6 @@ function noRecipe() {
 function displayFilterDropdown(dropdown) {
     let parentInputField = dropdown.parentNode;
     let dropdownInput = parentInputField.querySelector('.dropdown-input')
-    console.log(dropdown);
     let dropdownList = [...dropdown.children]
 
     dropdownInput.addEventListener('keyup', (e) => {
