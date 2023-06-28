@@ -46,7 +46,6 @@ function tagClicked(recipes) {
                             let ingredientRecipe = ingredient.ingredient.toLowerCase()
                             let tagValue = tag.textContent.toLowerCase()
                             let result = ingredientRecipe.localeCompare(tagValue)
-                            console.log(ingredient.ingredient);
                             if (result == 0) {
                                 ingredientsMatch.push(true);
                             } else {
